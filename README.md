@@ -1,1 +1,1 @@
-ESP32 CaptivePortal Basic Example
+ESP32 CaptivePortal with QRCode Example

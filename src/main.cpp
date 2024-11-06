@@ -2,6 +2,10 @@
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <WebServer.h>
+#include <qrcode_espi.h>
+
+TFT_eSPI display = TFT_eSPI();
+QRcode_eSPI qrcode (&display);
 
 const byte          DNS_PORT = 53;
 IPAddress           apIP(192, 168, 1, 1);
@@ -27,6 +31,8 @@ void button(){
 
 void setup() {
     Serial.begin(115200);
+    display.begin();
+    qrcode.init();
     pinMode(RELAY, OUTPUT);
     Serial.println();
     WiFi.mode(WIFI_AP);
@@ -44,6 +50,8 @@ void setup() {
     });
     webServer.begin();
     Serial.println("Captive Portal Started");
+    char msg[] = "WIFI:S:CaptivePortal;T:WEP;P:;;";
+    qrcode.create(msg);
 }
 
 void loop() {

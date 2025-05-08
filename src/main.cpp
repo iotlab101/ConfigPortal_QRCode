@@ -50,7 +50,8 @@ void setup() {
     });
     webServer.begin();
     Serial.println("Captive Portal Started");
-    char msg[] = "WIFI:S:CaptivePortal;T:WEP;P:;;";
+    //char msg[] = "WIFI:S:CaptivePortal;;;;";
+    char msg[] = "WIFI:S:CaptivePortal;T:WPA;P:yourpassword;;";
     qrcode.create(msg);
 }
 
